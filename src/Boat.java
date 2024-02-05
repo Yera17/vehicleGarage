@@ -3,6 +3,9 @@ public class Boat extends Vehicle{
         super(name, speed, VehicleType.BOAT);
     }
 
+    public Boat() {
+        super(VehicleType.BOAT);
+    }
     @Override
     public void start() {
         System.out.println("Boat started");

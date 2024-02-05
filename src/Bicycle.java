@@ -3,6 +3,9 @@ public class Bicycle extends Vehicle{
         super(name, speed, 2, VehicleType.BICYCLE);
     }
 
+    public Bicycle() {
+        super(VehicleType.BICYCLE);
+    }
     @Override
     public void start() {
         System.out.println("Bicycle started");

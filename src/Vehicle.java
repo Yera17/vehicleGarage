@@ -17,6 +17,10 @@ public abstract class Vehicle {
         this.vehicleType = vehicleType;
     }
 
+    public Vehicle(VehicleType vehicleType) {
+        this.vehicleType = vehicleType;
+    }
+
     public String getName() {
         return name;
     }

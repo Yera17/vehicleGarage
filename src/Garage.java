@@ -3,9 +3,14 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Garage {
-    Vehicle[] vehiclesInGarage = new Vehicle[0];
-    Vehicle[] vehiclesInSpeedRange = new Vehicle[0];
+    private Vehicle[] vehiclesInGarage = new Vehicle[0];
+    private Vehicle[] vehiclesInSpeedRange = new Vehicle[0];
+    private Vehicle[] vehiclesByType = new Vehicle[0];
     int number;
+
+    public Vehicle[] getVehiclesInGarage() {
+        return vehiclesInGarage;
+    }
 
     int numOfVehiclesInGarage = 0;
     public void addVehicle(Vehicle vehicle){
@@ -21,17 +26,18 @@ public class Garage {
         }
     }
 
-    public void removeVehicle(Vehicle vehicle, int number) {
+    public void removeVehicle(int number) {
         for (int i = 0; i < vehiclesInGarage.length; i++) {
-            if (vehiclesInGarage[i].equals(vehicle) && i == number-1){
+            if (i == number){
                 vehiclesInGarage[i]=null;
-
                 return;
             }
         }
     }
 
     public void displayInfo(Vehicle[] vehicles) {
+        System.out.println("--------------------------------------------------------------------------------------------------------");
+        System.out.println("Vehicles in Garage:");
         for (int i = 0; i < vehicles.length; i++) {
             if (vehicles[i] == null) {
                     continue;
@@ -44,7 +50,7 @@ public class Garage {
         addVehicle(vehiclesInGarage[place1 - 1]);
         vehiclesInGarage[place1 - 1] = vehiclesInGarage[place2 - 1];
         vehiclesInGarage[place2 - 1] = vehiclesInGarage[number];
-        removeVehicle(vehiclesInGarage[number], number);
+        removeVehicle(number);
     }
 
     // TODO: метод для вычисления транспортов у которых скорость находится в диапазоне от min до max
@@ -67,16 +73,16 @@ public class Garage {
     // TODO: метод для отображения транспортов определенного типа (CAR, BIKE, ...)
     public void displayAllVehiclesByType(VehicleType type) {
         int counter = 0;
-        Vehicle[] vehiclesByType = new Vehicle[0];
-        for (int i = 0; i < vehiclesInGarage.length; i++) {
-            if (vehiclesInGarage[i] == null) {
+        vehiclesByType = new Vehicle[0];
+        for (Vehicle vehicle : vehiclesInGarage) {
+            if (vehicle == null) {
                 continue;
             }
-            if (vehiclesInGarage[i].getVehicleType() == type) {
+            if (vehicle.getVehicleType().equals(type)) {
                 counter++;
                 vehiclesByType = Arrays.copyOf(vehiclesByType, counter);
 
-                vehiclesByType[counter-1] = vehiclesInGarage[i];
+                vehiclesByType[counter - 1] = vehicle;
             }
         }
         displayInfo(vehiclesByType);
